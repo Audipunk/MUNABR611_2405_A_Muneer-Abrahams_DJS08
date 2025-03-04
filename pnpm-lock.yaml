@@ -45,7 +45,6 @@ importers:
         version: 5.4.14
 
 packages:
-
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
@@ -1391,7 +1390,7 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
+    }}}
 snapshots:
 
   '@ampproject/remapping@2.3.0':
@@ -2932,3 +2931,4 @@ snapshots:
   yallist@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+    }}}}

@@ -1,92 +1,101 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 import {
-  getFirestore,
-  collection,
-  doc,
-  getDocs,
-  getDoc,
-  query,
-  where,
-} from "firebase/firestore/lite";
+    getFirestore,
+    collection,
+    doc,
+    getDocs,
+    getDoc,
+    query,
+    where,
+    documentId
+} from "firebase/firestore/lite"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAh0lyWxPQW7SLwMncW276ESrCWfT1tB8o",
-  authDomain: "van-life-4281f.firebaseapp.com",
-  projectId: "van-life-4281f",
-  storageBucket: "van-life-4281f.firebasestorage.app",
-  messagingSenderId: "938702120406",
-  appId: "1:938702120406:web:15f522e6c279ef86e67077",
+    apiKey: "AIzaSyD_k3v3HK3tKEqhlqFHPkwogW7PqEqhGhk",
+    authDomain: "vanlife-a1af5.firebaseapp.com",
+    projectId: "vanlife-a1af5",
+    storageBucket: "vanlife-a1af5.appspot.com",
+    messagingSenderId: "803007000356",
+    appId: "1:803007000356:web:446cd3a1ca406839258db1"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
 // Refactoring the fetching functions below
-const vansCollectionRef = collection(db, "vans");
+const vansCollectionRef = collection(db, "vans")
 
 export async function getVans() {
-  const snapshot = await getDocs(vansCollectionRef);
-  const vans = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return vans;
+    const snapshot = await getDocs(vansCollectionRef)
+    const vans = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+    return vans
 }
 
 export async function getVan(id) {
-  const docRef = doc(db, "vans", id);
-  const snapshot = await getDoc(docRef);
-  return {
-    ...snapshot.data(),
-    id: snapshot.id,
-  };
+    const docRef = doc(db, "vans", id)
+    const snapshot = await getDoc(docRef)
+    return {
+        ...snapshot.data(),
+        id: snapshot.id
+    }
 }
 
 export async function getHostVans() {
-  const q = query(vansCollectionRef, where("hostId", "==", "123"));
-  const snapshot = await getDocs(q);
-  const vans = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return vans;
+    const q = query(vansCollectionRef, where("hostId", "==", "123"))
+    const snapshot = await getDocs(q)
+    const vans = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+    return vans
 }
-const userCollectionRef = collection(db, "users");
+
+/* 
+This 👇 isn't normally something you'd need to do. Instead, you'd 
+set up Firebase security rules so only the currently logged-in user 
+could edit their vans.
+
+https://firebase.google.com/docs/rules
+
+I'm just leaving this here for educational purposes, as it took
+me a while to find the `documentId()` function that allows you
+to use a where() filter on a document's ID property. (Since normally
+it only looks at the data() properties of the document, meaning you
+can't do `where("id", "==", id))`
+
+It also shows how you can chain together multiple `where` filter calls
+*/
+
+// export async function getHostVan(id) {
+//     const q = query(
+//         vansCollectionRef,
+//         where(documentId(), "==", id),
+//         where("hostId", "==", "123")
+//     )
+//     const snapshot = await getDocs(q)
+//     const vans = snapshot.docs.map(doc => ({
+//         ...doc.data(),
+//         id: doc.id
+//     }))
+//     return vans[0]
+// }
 
 export async function loginUser(creds) {
-  try {
-    // Fetch all users from the Firestore collection
-    const snapshot = await getDocs(userCollectionRef);
-    const users = snapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
+    const res = await fetch("/api/login",
+        { method: "post", body: JSON.stringify(creds) }
+    )
+    const data = await res.json()
 
-    // Find a user that matches the credentials
-    const user = users.find(
-      (u) => u.email === creds.email && u.password === creds.password
-    );
-
-    if (!user) {
-      throw {
-        message: "No users exists with these credentials",
-        statusText: "Unauthorized",
-        status: 401,
-      };
+    if (!res.ok) {
+        throw {
+            message: data.message,
+            statusText: res.statusText,
+            status: res.status
+        }
     }
 
-    // Simulate the same data structure returned by the API
-    return {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    };
-  } catch (err) {
-    // Throw an error object
-    throw {
-      message: err.message || "An error occurred",
-      statusText: err.statusText || "Internal Server Error",
-      status: err.status || 500,
-    };
-  }
+    return data
 }

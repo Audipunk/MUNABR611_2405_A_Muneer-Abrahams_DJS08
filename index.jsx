@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
-import Home from "./pages/vans/home"
-import About from "./pages/Vans/About"
+import Home from "./pages/home"
+import About from "./pages/About"
 import Vans from "./pages/Vans/Vans"
 import VanDetail from "./pages/Vans/VanDetail"
 import Login from "./pages/Login"

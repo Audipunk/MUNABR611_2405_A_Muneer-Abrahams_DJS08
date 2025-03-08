@@ -98,4 +98,4 @@ export async function loginUser(creds) {
     }
 
     return data
-}
+}import {} from '@vitejs/plugin-react';

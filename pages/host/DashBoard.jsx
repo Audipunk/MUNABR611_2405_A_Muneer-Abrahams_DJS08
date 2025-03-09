@@ -1,16 +1,6 @@
-import { Outlet, NavLink } from "react-router-dom";
+import React from "react";
 
-function HostDashboard() {
-  return (
-    <div>
-      <h1>Host Dashboard</h1>
-      <nav>
-        <NavLink to="income">Income</NavLink>
-        <NavLink to="reviews">Reviews</NavLink>
-      </nav>
-      <Outlet />
-    </div>
-  );
+export default function Dashboard() {
+  return ( <h1>Dashboard goes here</h1>
+)
 }
-
-export default HostDashboard;

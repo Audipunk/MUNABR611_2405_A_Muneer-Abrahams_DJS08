@@ -1,5 +1,6 @@
-function HostIncome() {
-  return <h2>Host Income Details</h2>;
-}
+import React from "react";
 
-export default HostIncome;
+export default function Income() {
+  return (<h1>Income page goes here</h1>
+    
+  )}

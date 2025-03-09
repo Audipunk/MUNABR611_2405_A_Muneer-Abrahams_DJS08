@@ -4,9 +4,7 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
-  Link
-} from "react-router-dom"
+  Route} from "react-router-dom"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Vans, { loader as vansLoader } from "./pages/Vans/Vans"

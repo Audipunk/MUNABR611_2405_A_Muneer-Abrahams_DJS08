@@ -1,17 +1,15 @@
-//eslint-disable-next-line
-import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
+import Navbar from "./Navbar";
 
-export default function Layout() {
+function Layout() {
   return (
-    <div className="site-wrapper">
-      <Header />
+    <div>
+      <Navbar />
       <main>
         <Outlet />
       </main>
-      <Footer />
     </div>
   );
 }
+
+export default Layout;

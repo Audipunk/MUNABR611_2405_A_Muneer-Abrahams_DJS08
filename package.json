@@ -1,57 +1,28 @@
 {
-  "devDependencies": {
-    "@popperjs/core": "^2.11.8",
-    "@types/node": "^22.13.10",
-    "stylus": "^0.64.0",
-    "typescript": "^5.8.2",
-    "vite": "^6.2.1"
-   }   }  
-   {
-  "name": "@vitejs/plugin-vue-jsx",
-  "version": "4.1.1",
-  "type": "commonjs",
-  "license": "MIT",
-  "author": "Evan You",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
+  "name": "studentno-classcode-group-name-surname-djs08",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "unbuild --stub",
-    "build": "unbuild && pnpm run patch-cjs",
-    "patch-cjs": "tsx ../../scripts/patchCJS.ts",
-    "prepublishOnly": "npm run build"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "engines": {
-    "node": "^18.0.0 || >=20.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vitejs/vite-plugin-vue.git",
-    "directory": "packages/plugin-vue-jsx"
-  },
-  "bugs": {
-    "url": "https://github.com/vitejs/vite-plugin-vue/issues"
-  },
-  "homepage": "https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx#readme",
   "dependencies": {
-    "@babel/core": "^7.26.7",
-    "@babel/plugin-transform-typescript": "^7.26.7",
-    "@vue/babel-plugin-jsx": "^1.2.5"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
-    "vite": "catalog:"
-  },
-  "peerDependencies": {
-    "vite": "^5.0.0 || ^6.0.0",
-    "vue": "^3.0.0"
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "miragejs": "^0.2.0-alpha.3",
+    "vite": "^5.2.0"
   }
 }

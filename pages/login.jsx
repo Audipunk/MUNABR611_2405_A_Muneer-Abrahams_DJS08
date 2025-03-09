@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { loginUser } from "../../api";
+import { loginUser } from "../api";
 
 // Makes sure our page inputs are empty after initial load in
 export default function Login() {

@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom/client'
 import App from './main.jsx'
 import './index.css'
 
-
+ReactDOM
+  .createRoot(document.getElementById('root'))
+  .render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
   return (
     <BrowserRouter>
       <Routes>
@@ -37,11 +44,3 @@ import './index.css'
     </BrowserRouter>
   )
 
-ReactDOM
-  .createRoot(document.getElementById('root'))
-  .render(<App />);
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
